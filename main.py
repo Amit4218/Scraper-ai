@@ -1,6 +1,6 @@
 import streamlit as st
 from scrape import website, parse_content, clean_content, split_content
-from ai import parse_with_ollama
+from ai import parse_with_openai
 
 st.title("Scraper")
 url = st.text_input('Enter your URL')
@@ -26,5 +26,5 @@ if "website_content" in st.session_state:
             st.write("Parsing document...")
 
             dom_chunks = split_content(st.session_state.website_content)
-            parsed_result = parse_with_ollama(dom_chunks, parse_description)
+            parsed_result = parse_with_openai(dom_chunks, parse_description)
             st.write(parsed_result)
